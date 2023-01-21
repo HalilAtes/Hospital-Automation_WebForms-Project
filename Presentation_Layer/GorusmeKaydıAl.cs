@@ -21,8 +21,8 @@ namespace Presentation_Layer
         }
         private void verileri_goruntule()
         {
-            SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
-            List<Hasta> hastalar = sekretermanager1.GetAllPatients();
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
+            List<Hasta> hastalar = doktorManager.GetAllPatients();
 
             listView2.Items.Clear();
             foreach (Hasta hasta in hastalar)
@@ -55,31 +55,55 @@ namespace Presentation_Layer
 
         private void gorusKayıtEkle_btn_Click(object sender, EventArgs e)
         {
-            RandevuDal randevuDal = new RandevuDal();
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Hasta İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Görüşme Kaydı boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Tahlil Sonucu boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox2.Focus();
+                return;
+            }
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
             int HastaId = Convert.ToInt32(textBox3.Text);
             string Gorus = textBox1.Text;
             string Sonuc = textBox2.Text;
-            randevuDal.InsertGorus(HastaId, Gorus, Sonuc);
+            doktorManager.InsertGorus(HastaId, Gorus, Sonuc);
             MessageBox.Show("Görüşme Kaydı Başarıyla Kaydedildi!");
         }
 
         private void kayitGuncelle_btn_Click(object sender, EventArgs e)
         {
-            KayitDal kayitDal = new KayitDal();
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
             int id = Convert.ToInt32(textBox3.Text);
             string gorus = textBox1.Text;
             string sonuc = textBox2.Text;
             Kayit updatedkayit = new Kayit { HastaId = id, Gorus = gorus, Sonuc = sonuc };
-            kayitDal.UpdateKayit(updatedkayit);
+            doktorManager.UpdateKayit(updatedkayit);
             //verileri_goruntule();
             MessageBox.Show("Görüşme Kaydı Başarıyla Güncellendi!");
         }
 
         private void kaydıGetir_btn_Click(object sender, EventArgs e)
         {
-            KayitDal kayitDal = new KayitDal();
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Hasta İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
             int hastaId = Convert.ToInt32(textBox3.Text);
-            Kayit kayitNesne = kayitDal.GetKayitByHastaId(hastaId);
+            Kayit kayitNesne = doktorManager.GetKayitByHastaId(hastaId);
             textBox3.Text = kayitNesne.HastaId.ToString();
             textBox1.Text = kayitNesne.Gorus;
             textBox2.Text = kayitNesne.Sonuc;

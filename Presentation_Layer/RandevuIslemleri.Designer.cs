@@ -29,8 +29,9 @@ namespace Presentation_Layer
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RandevuIslemleri));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,7 +63,7 @@ namespace Presentation_Layer
             this.label8 = new System.Windows.Forms.Label();
             this.HastaGetir_btn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.randevuKayıt_btn = new System.Windows.Forms.Button();
             this.temizleRandevu_btn = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -94,9 +95,9 @@ namespace Presentation_Layer
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("MV Boli", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.groupBox1.Location = new System.Drawing.Point(12, 22);
+            this.groupBox1.Location = new System.Drawing.Point(117, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(632, 426);
+            this.groupBox1.Size = new System.Drawing.Size(527, 426);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hasta Kayıt İşlemi";
@@ -151,7 +152,6 @@ namespace Presentation_Layer
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(148, 25);
             this.comboBox1.TabIndex = 5;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -167,7 +167,6 @@ namespace Presentation_Layer
             // 
             this.maskedTextBox1.Font = new System.Drawing.Font("MV Boli", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maskedTextBox1.Location = new System.Drawing.Point(198, 241);
-            this.maskedTextBox1.Mask = "(999) 000-0000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(148, 27);
             this.maskedTextBox1.TabIndex = 8;
@@ -243,7 +242,7 @@ namespace Presentation_Layer
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(234, 484);
+            this.label7.Location = new System.Drawing.Point(254, 484);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 23);
             this.label7.TabIndex = 19;
@@ -258,14 +257,14 @@ namespace Presentation_Layer
             this.columnHeader2,
             this.columnHeader6});
             this.listView1.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup5.Header = "ListViewGroup";
-            listViewGroup5.Name = "listViewGroup1";
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5});
+            listViewGroup1});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 534);
+            this.listView1.Location = new System.Drawing.Point(117, 534);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(632, 260);
+            this.listView1.Size = new System.Drawing.Size(527, 260);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -293,7 +292,7 @@ namespace Presentation_Layer
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MV Boli", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 485);
+            this.label6.Location = new System.Drawing.Point(115, 482);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 25);
             this.label6.TabIndex = 6;
@@ -309,14 +308,14 @@ namespace Presentation_Layer
             this.columnHeader8,
             this.columnHeader9});
             this.listView2.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup6.Header = "ListViewGroup";
-            listViewGroup6.Name = "listViewGroup1";
+            listViewGroup2.Header = "ListViewGroup";
+            listViewGroup2.Name = "listViewGroup1";
             this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup6});
+            listViewGroup2});
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(739, 524);
+            this.listView2.Location = new System.Drawing.Point(749, 524);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(540, 260);
+            this.listView2.Size = new System.Drawing.Size(530, 270);
             this.listView2.TabIndex = 7;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -370,7 +369,7 @@ namespace Presentation_Layer
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.groupBox2.Controls.Add(this.maskedTextBox2);
+            this.groupBox2.Controls.Add(this.dateTimePicker1);
             this.groupBox2.Controls.Add(this.randevuKayıt_btn);
             this.groupBox2.Controls.Add(this.temizleRandevu_btn);
             this.groupBox2.Controls.Add(this.comboBox3);
@@ -382,22 +381,20 @@ namespace Presentation_Layer
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Font = new System.Drawing.Font("MV Boli", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.groupBox2.Location = new System.Drawing.Point(739, 22);
+            this.groupBox2.Location = new System.Drawing.Point(749, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(540, 395);
+            this.groupBox2.Size = new System.Drawing.Size(530, 395);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Randevu Kayıt İşlemi";
             // 
-            // maskedTextBox2
+            // dateTimePicker1
             // 
-            this.maskedTextBox2.Font = new System.Drawing.Font("MV Boli", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox2.Location = new System.Drawing.Point(198, 125);
-            this.maskedTextBox2.Mask = "00/00/0000 90:00";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(148, 27);
-            this.maskedTextBox2.TabIndex = 19;
-            this.maskedTextBox2.ValidatingType = typeof(System.DateTime);
+            this.dateTimePicker1.Font = new System.Drawing.Font("MV Boli", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(198, 126);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(220, 28);
+            this.dateTimePicker1.TabIndex = 20;
             // 
             // randevuKayıt_btn
             // 
@@ -428,7 +425,7 @@ namespace Presentation_Layer
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(198, 183);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(148, 25);
+            this.comboBox3.Size = new System.Drawing.Size(220, 25);
             this.comboBox3.TabIndex = 5;
             // 
             // label9
@@ -446,7 +443,7 @@ namespace Presentation_Layer
             this.textBox4.Font = new System.Drawing.Font("MV Boli", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(198, 241);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(148, 27);
+            this.textBox4.Size = new System.Drawing.Size(220, 27);
             this.textBox4.TabIndex = 13;
             // 
             // label10
@@ -474,7 +471,7 @@ namespace Presentation_Layer
             this.textBox6.Font = new System.Drawing.Font("MV Boli", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(198, 76);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(148, 27);
+            this.textBox6.Size = new System.Drawing.Size(220, 27);
             this.textBox6.TabIndex = 1;
             // 
             // label13
@@ -491,7 +488,7 @@ namespace Presentation_Layer
             // 
             this.geri_btn.BackColor = System.Drawing.Color.OrangeRed;
             this.geri_btn.Font = new System.Drawing.Font("Ink Free", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.geri_btn.Location = new System.Drawing.Point(653, 414);
+            this.geri_btn.Location = new System.Drawing.Point(663, 414);
             this.geri_btn.Name = "geri_btn";
             this.geri_btn.Size = new System.Drawing.Size(80, 34);
             this.geri_btn.TabIndex = 20;
@@ -503,6 +500,8 @@ namespace Presentation_Layer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1296, 819);
             this.Controls.Add(this.geri_btn);
             this.Controls.Add(this.groupBox2);
@@ -568,9 +567,9 @@ namespace Presentation_Layer
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button geri_btn;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

@@ -29,13 +29,13 @@ namespace Presentation_Layer
 
             foreach (HastaRandevuDoktor randevu in hastaRandevuDoktorList)
             {
-                ListViewItem item = new ListViewItem(randevu.HastaAd);
+                ListViewItem item = new ListViewItem(randevu.RandevuId.ToString());
+                item.SubItems.Add(randevu.HastaAd);
                 item.SubItems.Add(randevu.HastaSoyad);
                 item.SubItems.Add(randevu.Bolum);
                 item.SubItems.Add(randevu.TelNo);
                 item.SubItems.Add(randevu.DoktorAd);
                 item.SubItems.Add(randevu.DoktorSoyad);
-                item.SubItems.Add(randevu.RandevuId.ToString());
                 listView2.Items.Add(item);
             }
 

@@ -5,20 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace Business.Abstract
 {
-    public interface IHastaDal
+    public interface IDoktorService
     {
-        List<Hasta> GetAllPatients();
-        Hasta GetPatientById(int id);
+
         Dictionary<string, int> GetPatientCountByDoctor();
         Dictionary<string, int> GetPatientCountByBranch();
         List<Hasta> GetPatientsByDoctorId(int doctorId);
+        List<Hasta> GetAllPatients();
+        void InsertGorus(int hastaId, string gorus, string sonuc);
+        void UpdateKayit(Kayit kayit);
+        Kayit GetKayitByHastaId(int hastaId);
 
-        void Add(Hasta hasta);
-        void UpdatePatient(Hasta hasta);
-        void Delete(int id);
-        bool CheckIfIdExistsPatient(int idToCheck);
 
 
     }

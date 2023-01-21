@@ -18,7 +18,7 @@ namespace DataAccess.Concrete
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
-                string query = "INSERT INTO Doktorlar (Ad, Soyad, Brans,TelNo) VALUES (@ad, @soyad, @brans,@telno)";
+                string query = "INSERT INTO Doktorlar (DoktorAd, DoktorSoyad, Brans,TelNo) VALUES (@ad, @soyad, @brans,@telno)";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ad", doktor.Ad);
@@ -35,7 +35,7 @@ namespace DataAccess.Concrete
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
-                string query = "UPDATE Doktorlar SET Ad = @ad, Soyad = @soyad, Brans = @brans, TelNo= @telno WHERE Id = @id";
+                string query = "UPDATE Doktorlar SET DoktorAd = @ad, DoktorSoyad = @soyad, Brans = @brans, TelNo= @telno WHERE Id = @id";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ad", doktor.Ad);
@@ -78,8 +78,8 @@ namespace DataAccess.Concrete
                             Doktor doktor = new Doktor
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                Ad = reader["Ad"].ToString(),
-                                Soyad = reader["Soyad"].ToString(),
+                                Ad = reader["DoktorAd"].ToString(),
+                                Soyad = reader["DoktorSoyad"].ToString(),
                                 Brans = reader["Brans"].ToString(),
                                 TelNo = reader["TelNo"].ToString()
                             };
@@ -128,8 +128,8 @@ namespace DataAccess.Concrete
                             Doktor doktor = new Doktor
                             {
                                 Id = (int)reader["Id"],
-                                Ad = (string)reader["Ad"],
-                                Soyad = (string)reader["Soyad"],
+                                Ad = (string)reader["DoktorAd"],
+                                Soyad = (string)reader["DoktorSoyad"],
                                 Brans = (string)reader["Brans"],
                                 TelNo = (string)reader["TelNo"]
                             };
@@ -150,7 +150,7 @@ namespace DataAccess.Concrete
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT id, Ad, Soyad FROM Doktorlar WHERE Brans = @branch";
+                string query = "SELECT id, DoktorAd, DoktorSoyad FROM Doktorlar WHERE Brans = @branch";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@branch", branch);
@@ -174,5 +174,23 @@ namespace DataAccess.Concrete
             }
             return doctors;
         }
+
+        public bool CheckIfIdExistsDoctor(int idToCheck)
+        {
+
+            string query = "SELECT COUNT(*) FROM Doktorlar WHERE id = @Id";
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", idToCheck);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+        
     }
 }

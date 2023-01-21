@@ -10,19 +10,18 @@ namespace Business.Abstract
     public interface ISekreterService
     {
         List<Doktor> GetAllDoctors();
-        List<Hasta> GetAllPatients();
         List<Sekreter> GetAllSecretary();
 
 
         Doktor GetDoctorById(int id);
 
         List<Doktor> GetDoctorsByBranch(string branch);
-        int GetPatientCountByBranch(int branchId);
 
         Hasta GetPatientById(int id);
         Sekreter GetSecretaryById(int id);
 
         List<string> GetBranches();
+
 
         void Add(Doktor doktor);
 
@@ -44,5 +43,11 @@ namespace Business.Abstract
         void UpdateSecretary(Sekreter sekreter);
 
         void DeleteSecretary(int id);
+
+        bool CheckIfIdExistsSecreter(int idToCheck);
+        bool CheckIfIdExistsDoctor(int idToCheck);
+        bool CheckIfIdExistsPatient(int idToCheck);
+
+
     }
 }

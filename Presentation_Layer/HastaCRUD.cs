@@ -21,8 +21,8 @@ namespace Presentation_Layer
         }
         private void verileri_goruntule()
         {
-            SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(),new SekreterDal());
-            List<Hasta> hastalar = sekretermanager1.GetAllPatients();
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
+            List<Hasta> hastalar = doktorManager.GetAllPatients();
 
             listView1.Items.Clear();
             foreach (Hasta hasta in hastalar)
@@ -44,6 +44,24 @@ namespace Presentation_Layer
 
         private void hasta_ekle_btn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Hasta İsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Hasta Soyİsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) || (maskedTextBox1.Text.Length < 10))
+            {
+                MessageBox.Show("Telefon numarası boş olamaz ve en az 10 haneli olmalıdır!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                maskedTextBox1.Focus();
+                return;
+            }
             SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
             string ad = textBox1.Text;
             string soyad = textBox2.Text;
@@ -61,23 +79,58 @@ namespace Presentation_Layer
             SekreterManager sekreterManager = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
             List<string> branslar = sekreterManager.GetBranches();
             comboBox1.DataSource = branslar;
-            comboBox1.SelectedIndex = -1;
 
         }
 
         private void guncelle_btn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Hasta İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Hasta İsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Hasta Soyİsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
 
-            SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) || (maskedTextBox1.Text.Length < 10))
+            {
+                MessageBox.Show("Telefon numarası boş olamaz ve en az 10 haneli olmalıdır!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                maskedTextBox1.Focus();
+                return;
+            }
             int id = Convert.ToInt32(textBox3.Text);
-            string ad = textBox1.Text;
-            string soyad = textBox2.Text;
-            string brans = comboBox1.SelectedValue.ToString();
-            string telNo = maskedTextBox1.Text;
-            Hasta updatedhasta = new Hasta { Id = id, Ad = ad, Soyad = soyad, GittigiBolum = brans, TelNo = telNo };
-            sekretermanager1.UpdatePatient(updatedhasta);
-            verileri_goruntule();
-            MessageBox.Show("Hasta Başarıyla Güncellendi!");
+            SekreterManager sekretermanagercntrl1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
+            bool varmi = sekretermanagercntrl1.CheckIfIdExistsPatient(id);
+            if (varmi == false)
+            {
+                MessageBox.Show("Girdiğiniz İd'ye sahip bir Hasta bulunamadı", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (true)
+            {
+                SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
+                string ad = textBox1.Text;
+                string soyad = textBox2.Text;
+                string brans = comboBox1.SelectedValue.ToString();
+                string telNo = maskedTextBox1.Text;
+                Hasta updatedhasta = new Hasta { Id = id, Ad = ad, Soyad = soyad, GittigiBolum = brans, TelNo = telNo };
+                sekretermanager1.UpdatePatient(updatedhasta);
+                verileri_goruntule();
+                MessageBox.Show("Hasta Başarıyla Güncellendi!");
+            }
+           
         }
 
         private void HastaGetir_btn_Click(object sender, EventArgs e)

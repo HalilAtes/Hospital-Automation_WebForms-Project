@@ -12,11 +12,12 @@ namespace DataAccess.Abstract
         List<Sekreter> GetAllSekreter();
         Sekreter GetSekreterById(int id);
         int GetPatientCountByBranch(int branchId);
-        Dictionary<string, int> GetPatientCountByBranch();
         List<string> GetPatientsByDoctorId(int doctorId);
 
         void Add(Sekreter sekreter);
         void UpdateSekreter(Sekreter sekreter);
         void Delete(int id);
+
+        bool CheckIfIdExistsSecreter(int idToCheck);
     }
 }

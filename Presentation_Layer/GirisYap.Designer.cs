@@ -39,6 +39,7 @@ namespace Presentation_Layer
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.kapat_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -135,6 +136,19 @@ namespace Presentation_Layer
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
+            // kapat_btn
+            // 
+            this.kapat_btn.BackColor = System.Drawing.Color.Snow;
+            this.kapat_btn.Font = new System.Drawing.Font("Ink Free", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kapat_btn.ForeColor = System.Drawing.Color.Red;
+            this.kapat_btn.Location = new System.Drawing.Point(1247, -1);
+            this.kapat_btn.Name = "kapat_btn";
+            this.kapat_btn.Size = new System.Drawing.Size(53, 41);
+            this.kapat_btn.TabIndex = 18;
+            this.kapat_btn.Text = "X";
+            this.kapat_btn.UseVisualStyleBackColor = false;
+            this.kapat_btn.Click += new System.EventHandler(this.kapat_btn_Click);
+            // 
             // GirisYap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,6 +156,7 @@ namespace Presentation_Layer
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1296, 819);
+            this.Controls.Add(this.kapat_btn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox4);
@@ -151,6 +166,7 @@ namespace Presentation_Layer
             this.Controls.Add(this.kullaniciAdi);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GirisYap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GirisYap";
@@ -174,5 +190,6 @@ namespace Presentation_Layer
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button kapat_btn;
     }
 }

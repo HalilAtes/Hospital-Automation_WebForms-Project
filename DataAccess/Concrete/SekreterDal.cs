@@ -26,10 +26,10 @@ namespace DataAccess.Concrete
                 if (count == 0)
                     sekreter.Id = 1;
 
-                string query = "INSERT INTO Sekreterler (Ad, Soyad, TelNo) VALUES (@ad, @soyad, @telno)";
+                string query = "INSERT INTO Sekreterler (Ad, Soyad, TelNo) VALUES (@hastaad, @hastasoyad, @telno)";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ad", sekreter.Ad);
+                    command.Parameters.AddWithValue("@hastaad", sekreter.Ad);
                     command.Parameters.AddWithValue("@soyad", sekreter.Soyad);
                     command.Parameters.AddWithValue("@telno", sekreter.TelNo);
                     command.ExecuteNonQuery();
@@ -82,50 +82,7 @@ namespace DataAccess.Concrete
         }
 
 
-
-        public Dictionary<string, int> GetPatientCountByBranch()
-        {
-            Dictionary<string, int> patientCount = new Dictionary<string, int>();
-
-            using (OleDbConnection connection = new OleDbConnection(connectionString))
-            {
-                connection.Open();
-                using (OleDbCommand command = new OleDbCommand("SELECT Brans_Adi, COUNT(*) FROM Hastalar GROUP BY Brans_Adi", connection))
-                {
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            patientCount.Add(reader.GetString(0), reader.GetInt32(1));
-                        }
-                    }
-                }
-            }
-
-            return patientCount;
-        }
-        public Dictionary<int, int> GetPatientCountByDoctor()
-        {
-            Dictionary<int, int> patientCount = new Dictionary<int, int>();
-
-            using (OleDbConnection connection = new OleDbConnection(connectionString))
-            {
-                connection.Open();
-                using (OleDbCommand command = new OleDbCommand("SELECT Doktor_Id, COUNT(*) FROM Hastalar GROUP BY Doktor_Id", connection))
-                {
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            patientCount.Add(reader.GetInt32(0), reader.GetInt32(1));
-                        }
-                    }
-                }
-            }
-
-            return patientCount;
-        }
-
+      
 
         public int GetPatientCountByBranch(int branchId)
         {
@@ -192,30 +149,31 @@ namespace DataAccess.Concrete
                 }
             }
         }
+        
 
+        //public List<string> GetPatientsByDoctorId1(int doctorId)
+        //{
+        //    List<string> patients = new List<string>();
 
-        public List<string> GetPatientsByDoctorId(int doctorId)
-        {
-            List<string> patients = new List<string>();
-
-            using (OleDbConnection connection = new OleDbConnection(connectionString))
-            {
-                connection.Open();
-                using (OleDbCommand command = new OleDbCommand("SELECT Hastalar.Ad,Hastalar.Soyad,Hastalar.TelNo,Hastalar.Brans_Adi FROM Doktorlar JOIN Hastalar ON Doktorlar.id = Hastalar.Doktor_Id WHERE Doktorlar.id = @doctorId", connection))
-                {
-                    command.Parameters.AddWithValue("@doctorId", doctorId);
-                    using (OleDbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string patient = reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetString(2) + " " + reader.GetString(3);
-                            patients.Add(patient);
-                        }
-                    }
-                }
-            }
-            return patients;
-        }
+        //    using (OleDbConnection connection = new OleDbConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        using (OleDbCommand command = new OleDbCommand("SELECT h.HastaAd, h.HastaSoyad, h.TelNo, h.Brans_Adi FROM ((Hastalar h " +
+        //                       "INNER JOIN Doktorlar d ON h.id = d.id)", connection))
+        //        {
+        //            command.Parameters.AddWithValue("@doctorId", doctorId)
+        //            using (OleDbDataReader reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    string patient = reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetString(2) + " " + reader.GetString(3);
+        //                    patients.Add(patient);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return patients;
+        //}
 
         public ComboBox GetBranches(ComboBox comboBox)
         {
@@ -276,7 +234,28 @@ namespace DataAccess.Concrete
             }
             return comboBox;
         }
+        public bool CheckIfIdExistsSecreter(int idToCheck)
+        {
 
+            string query = "SELECT COUNT(*) FROM Sekreterler WHERE Id = @Id";
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", idToCheck);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
+
+        List<string> ISekreterDal.GetPatientsByDoctorId(int doctorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

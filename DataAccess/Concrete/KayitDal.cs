@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using DataAccess.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
@@ -8,9 +9,25 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class KayitDal
+    public class KayitDal : IKayitDal
     {
         private string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\mazen\\source\\HastaneOtomasyonDb.mdb;";
+
+        public void InsertGorus(int hastaId, string gorus, string sonuc)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Kayıtlar (Hasta_Id, Gorus, Sonuc) VALUES ( @hasta_ıd, @gorus,@sonuc)";
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@hasta_ıd", hastaId);
+                    command.Parameters.AddWithValue("@gorus", gorus);
+                    command.Parameters.AddWithValue("@sonuc", sonuc);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         public Kayit GetKayitByHastaId(int hastaId)
         {
@@ -47,7 +64,7 @@ namespace DataAccess.Concrete
                 {
                     command.Parameters.AddWithValue("@ad", kayit.Gorus);
                     command.Parameters.AddWithValue("@soyad", kayit.Sonuc);
-                    command.Parameters.AddWithValue("@@id", kayit.HastaId);
+                    command.Parameters.AddWithValue("@id", kayit.HastaId);
                     command.ExecuteNonQuery();
                 }
             }

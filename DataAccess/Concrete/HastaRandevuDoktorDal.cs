@@ -18,9 +18,9 @@ namespace DataAccess.Concrete
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT h.Ad, h.Soyad, h.GittigiBolum, h.TelNo , d.Ad, d.Soyad, r.randevuId FROM Hastalar h " +
-                               "INNER JOIN Randevular r ON h.id = r.HastaId " +
-                               "INNER JOIN Doktorlar d ON r.DoktorId = d.id";
+                string query = "SELECT h.HastaAd, h.HastaSoyad, h.Brans_Adi, h.TelNo , d.DoktorAd, d.DoktorSoyad, r.randevuId FROM ((Hastalar h " +
+                               "INNER JOIN Randevular r ON h.id = r.HastaId)" +
+                               "INNER JOIN Doktorlar d ON r.DoktorId = d.id)";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     OleDbDataReader reader = command.ExecuteReader();
@@ -28,13 +28,13 @@ namespace DataAccess.Concrete
                     {
                         hastaRandevuDoktorList.Add(new HastaRandevuDoktor
                         {
-                            HastaAd = reader["Ad"].ToString(),
-                            HastaSoyad = reader["Soyad"].ToString(),
-                            Bolum = reader["GittigiBolum"].ToString(),
+                            RandevuId = (int)reader["randevuId"],
+                            HastaAd = reader["HastaAd"].ToString(),
+                            HastaSoyad = reader["HastaSoyad"].ToString(),
+                            Bolum = reader["Brans_Adi"].ToString(),
                             TelNo = reader["TelNo"].ToString(),
-                            DoktorAd = reader["Ad"].ToString(),
-                            DoktorSoyad = reader["Soyad"].ToString(),
-                            RandevuId = (int)reader["randevu_Id"]
+                            DoktorAd = reader["DoktorAd"].ToString(),
+                            DoktorSoyad = reader["DoktorSoyad"].ToString()
                         });
                     }
                 }

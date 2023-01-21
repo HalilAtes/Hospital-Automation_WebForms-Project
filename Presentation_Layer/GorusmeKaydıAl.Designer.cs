@@ -29,7 +29,8 @@ namespace Presentation_Layer
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GorusmeKaydıAl));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.kaydıGetir_btn = new System.Windows.Forms.Button();
             this.kayitGuncelle_btn = new System.Windows.Forms.Button();
@@ -50,7 +51,13 @@ namespace Presentation_Layer
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HastaGetir_btn = new System.Windows.Forms.Button();
             this.geri_btn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -68,7 +75,7 @@ namespace Presentation_Layer
             this.groupBox1.Controls.Add(this.temizle_btn);
             this.groupBox1.Font = new System.Drawing.Font("MV Boli", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.groupBox1.Location = new System.Drawing.Point(712, 35);
+            this.groupBox1.Location = new System.Drawing.Point(703, 205);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(557, 589);
             this.groupBox1.TabIndex = 5;
@@ -199,10 +206,10 @@ namespace Presentation_Layer
             this.columnHeader8,
             this.columnHeader9});
             this.listView2.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup3.Header = "ListViewGroup";
-            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
             this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3});
+            listViewGroup1});
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(58, 426);
             this.listView2.Name = "listView2";
@@ -239,9 +246,9 @@ namespace Presentation_Layer
             // 
             this.HastaGetir_btn.BackColor = System.Drawing.Color.Aqua;
             this.HastaGetir_btn.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HastaGetir_btn.Location = new System.Drawing.Point(441, 359);
+            this.HastaGetir_btn.Location = new System.Drawing.Point(418, 359);
             this.HastaGetir_btn.Name = "HastaGetir_btn";
-            this.HastaGetir_btn.Size = new System.Drawing.Size(157, 29);
+            this.HastaGetir_btn.Size = new System.Drawing.Size(180, 29);
             this.HastaGetir_btn.TabIndex = 17;
             this.HastaGetir_btn.Text = "Hastaları Getir";
             this.HastaGetir_btn.UseVisualStyleBackColor = false;
@@ -259,11 +266,44 @@ namespace Presentation_Layer
             this.geri_btn.UseVisualStyleBackColor = false;
             this.geri_btn.Click += new System.EventHandler(this.geri_btn_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(58, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(304, 276);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(482, 193);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(168, 118);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(812, 25);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(320, 149);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 21;
+            this.pictureBox3.TabStop = false;
+            // 
             // GorusmeKaydıAl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1296, 819);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.geri_btn);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.listView2);
@@ -275,6 +315,9 @@ namespace Presentation_Layer
             this.Load += new System.EventHandler(this.GorusmeKaydıAl_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,5 +345,8 @@ namespace Presentation_Layer
         private System.Windows.Forms.Button kayitGuncelle_btn;
         private System.Windows.Forms.Button kaydıGetir_btn;
         private System.Windows.Forms.Button geri_btn;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

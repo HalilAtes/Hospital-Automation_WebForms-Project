@@ -40,9 +40,9 @@ namespace Presentation_Layer
 
         private void doktoraGoreHastaSayisiGetir_btn_Click(object sender, EventArgs e)
         {
-            SekreterDal _sekreterDal = new SekreterDal();
-            Dictionary<int, int> data1 = new Dictionary<int, int>();
-            data1 = _sekreterDal.GetPatientCountByDoctor();
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
+            Dictionary<string, int> data1 = new Dictionary<string, int>();
+            data1 = doktorManager.GetPatientCountByDoctor();
             chart1.Series.Clear();
             chart1.Series.Add("Hasta Sayısı");
 

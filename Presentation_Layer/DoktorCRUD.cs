@@ -47,6 +47,24 @@ namespace Presentation_Layer
 
         private void doktor_ekle_btn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Doktor İsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Doktor Soyİsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) || (maskedTextBox1.Text.Length < 10))
+            {
+                MessageBox.Show("Telefon numarası boş olamaz ve en az 10 haneli olmalıdır!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                maskedTextBox1.Focus();
+                return;
+            }
             SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
             string ad = textBox1.Text;
             string soyad = textBox2.Text;
@@ -67,16 +85,54 @@ namespace Presentation_Layer
 
         private void guncelle_btn_Click(object sender, EventArgs e)
         {
-            SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Doktor İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Doktor İsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Doktor Soyİsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+        
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) || (maskedTextBox1.Text.Length < 10))
+            {
+                MessageBox.Show("Telefon numarası boş olamaz ve en az 10 haneli olmalıdır!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                maskedTextBox1.Focus();
+                return;
+            }
+
             int id = Convert.ToInt32(textBox3.Text);
-            string ad = textBox1.Text;
-            string soyad = textBox2.Text;
-            string brans = comboBox1.SelectedValue.ToString();
-            string telNo = maskedTextBox1.Text;
-            Doktor updatedDoktor = new Doktor { Id =id ,Ad = ad, Soyad = soyad, Brans = brans,TelNo =telNo };
-            sekretermanager1.Update(updatedDoktor);
-            verileri_goruntule();
-            MessageBox.Show("Doktor Başarıyla Güncellendi!");
+            SekreterManager sekretermanagercntrl1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
+            bool varmi = sekretermanagercntrl1.CheckIfIdExistsDoctor(id);
+            if (varmi == false)
+            {
+                MessageBox.Show("Girdiğiniz İd'ye sahip bir Doktor bulunamadı", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (varmi == true)
+            {
+                SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
+                string ad = textBox1.Text;
+                string soyad = textBox2.Text;
+                string brans = comboBox1.SelectedValue.ToString();
+                string telNo = maskedTextBox1.Text;
+                Doktor updatedDoktor = new Doktor { Id = id, Ad = ad, Soyad = soyad, Brans = brans, TelNo = telNo };
+                sekretermanager1.Update(updatedDoktor);
+                verileri_goruntule();
+                MessageBox.Show("Doktor Başarıyla Güncellendi!");
+            }
+        
         }
 
         private void button4_Click(object sender, EventArgs e)

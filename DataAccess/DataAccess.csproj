@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IDoktorDal.cs" />
     <Compile Include="Abstract\IHastaDal.cs" />
+    <Compile Include="Abstract\IKayitDal.cs" />
     <Compile Include="Abstract\ISekreterDal.cs" />
     <Compile Include="Concrete\DoktorDal.cs" />
     <Compile Include="Concrete\HastaDal.cs" />

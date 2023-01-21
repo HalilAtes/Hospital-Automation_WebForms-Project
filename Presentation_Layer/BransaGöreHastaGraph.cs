@@ -17,25 +17,18 @@ namespace Presentation_Layer
 {
     public partial class BransaGöreHastaGraph : Form
     {
-        private SekreterDal _sekreterDal;
         public BransaGöreHastaGraph()
         {
             InitializeComponent();
-            _sekreterDal = new SekreterDal();
         }
 
         private void bransaGoreHastaSayisiGetir_btn_Click(object sender, EventArgs e)
         {
-            Dictionary<string, int> data = new Dictionary<string, int>()
-             {
-                 { "Kardiyoloji", 2 },
-                 { "Ortopedi", 4 },
-                 { "Göz Hastalıkları", 6 },
-                 { "Kulak Burun Boğaz", 4 }
-            };
+           
 
             Dictionary<string, int> data1 = new Dictionary<string, int>();
-            data1 = _sekreterDal.GetPatientCountByBranch();
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(),new KayitDal());
+            data1 = doktorManager.GetPatientCountByBranch();
 
             chart1.Series.Clear();
             chart1.Series.Add("Hasta Sayısı");

@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Concrete;
+using DataAccess.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,26 +14,33 @@ using System.Windows.Forms;
 namespace Presentation_Layer
 {
     public partial class HastaListesi : Form
-    {   private SekreterDal _sekreterDal;
+    {  
         public HastaListesi()
         {
             InitializeComponent();
-            _sekreterDal = new SekreterDal();
         }
 
         private void verileri_goruntule()
         {
             int doktorId = Convert.ToInt32(textBox3.Text);
-            List<string> hastalar = _sekreterDal.GetPatientsByDoctorId(doktorId);
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Doktor İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
+            List<Hasta> hastalar = doktorManager.GetPatientsByDoctorId(doktorId);
 
             listView1.Items.Clear();
-            int index = 0;
-            foreach (string hasta in hastalar)
+            foreach (Hasta hasta in hastalar)
             {
-                ListViewItem item = new ListViewItem((index + 1).ToString());
-                item.SubItems.Add(hasta);
+                ListViewItem item = new ListViewItem();
+                item.Text = hasta.Ad.ToString();
+                item.SubItems.Add(hasta.Soyad);
+                item.SubItems.Add(hasta.TelNo);
+                item.SubItems.Add(hasta.GittigiBolum);
                 listView1.Items.Add(item);
-                index++;
             }
         }
 
@@ -40,16 +49,17 @@ namespace Presentation_Layer
             verileri_goruntule();
         }
 
-        private void HastaListesi_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void geri_btn_Click(object sender, EventArgs e)
         {
             Doktorİslemleri doktorislem = new Doktorİslemleri();
             doktorislem.Show();
             this.Hide();
+        }
+
+        private void HastaListesi_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

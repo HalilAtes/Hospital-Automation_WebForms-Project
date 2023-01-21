@@ -29,7 +29,8 @@ namespace Presentation_Layer
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HastaPdf));
             this.label8 = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,11 +53,12 @@ namespace Presentation_Layer
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.temizle_btn = new System.Windows.Forms.Button();
-            this.DosyaEkle = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.geri_btn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label8
@@ -79,10 +81,10 @@ namespace Presentation_Layer
             this.columnHeader8,
             this.columnHeader9});
             this.listView2.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listViewGroup3.Header = "ListViewGroup";
-            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup5.Header = "ListViewGroup";
+            listViewGroup5.Name = "listViewGroup1";
             this.listView2.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3});
+            listViewGroup5});
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(34, 413);
             this.listView2.Name = "listView2";
@@ -130,8 +132,10 @@ namespace Presentation_Layer
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.kaydıGetir_btn);
             this.groupBox1.Controls.Add(this.button2);
@@ -145,9 +149,9 @@ namespace Presentation_Layer
             this.groupBox1.Controls.Add(this.temizle_btn);
             this.groupBox1.Font = new System.Drawing.Font("MV Boli", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.groupBox1.Location = new System.Drawing.Point(712, 39);
+            this.groupBox1.Location = new System.Drawing.Point(679, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(557, 626);
+            this.groupBox1.Size = new System.Drawing.Size(590, 698);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hasta Görüşme Bilgisi İşlemi";
@@ -155,9 +159,9 @@ namespace Presentation_Layer
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("MV Boli", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(216, 433);
+            this.textBox4.Location = new System.Drawing.Point(198, 432);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(148, 27);
+            this.textBox4.Size = new System.Drawing.Size(162, 27);
             this.textBox4.TabIndex = 31;
             // 
             // label3
@@ -174,9 +178,9 @@ namespace Presentation_Layer
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.button1.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(216, 538);
+            this.button1.Location = new System.Drawing.Point(198, 629);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 29);
+            this.button1.Size = new System.Drawing.Size(330, 29);
             this.button1.TabIndex = 29;
             this.button1.Text = "Mail Gönder";
             this.button1.UseVisualStyleBackColor = false;
@@ -198,9 +202,9 @@ namespace Presentation_Layer
             // 
             this.button2.BackColor = System.Drawing.Color.OrangeRed;
             this.button2.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(380, 538);
+            this.button2.Location = new System.Drawing.Point(198, 538);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(148, 29);
+            this.button2.Size = new System.Drawing.Size(330, 29);
             this.button2.TabIndex = 27;
             this.button2.Text = "PDF oluştur";
             this.button2.UseVisualStyleBackColor = false;
@@ -210,9 +214,9 @@ namespace Presentation_Layer
             // 
             this.güncelle_btn.BackColor = System.Drawing.Color.Yellow;
             this.güncelle_btn.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.güncelle_btn.Location = new System.Drawing.Point(216, 494);
+            this.güncelle_btn.Location = new System.Drawing.Point(198, 494);
             this.güncelle_btn.Name = "güncelle_btn";
-            this.güncelle_btn.Size = new System.Drawing.Size(148, 29);
+            this.güncelle_btn.Size = new System.Drawing.Size(162, 29);
             this.güncelle_btn.TabIndex = 26;
             this.güncelle_btn.Text = "Güncelle";
             this.güncelle_btn.UseVisualStyleBackColor = false;
@@ -286,33 +290,13 @@ namespace Presentation_Layer
             this.temizle_btn.UseVisualStyleBackColor = false;
             this.temizle_btn.Click += new System.EventHandler(this.temizle_btn_Click);
             // 
-            // DosyaEkle
-            // 
-            this.DosyaEkle.BackColor = System.Drawing.Color.Lime;
-            this.DosyaEkle.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DosyaEkle.Location = new System.Drawing.Point(203, 229);
-            this.DosyaEkle.Name = "DosyaEkle";
-            this.DosyaEkle.Size = new System.Drawing.Size(148, 29);
-            this.DosyaEkle.TabIndex = 22;
-            this.DosyaEkle.Text = "Dosya Ekle";
-            this.DosyaEkle.UseVisualStyleBackColor = false;
-            this.DosyaEkle.Click += new System.EventHandler(this.DosyaEkle_Click);
-            // 
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("MV Boli", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(203, 115);
+            this.textBox5.Location = new System.Drawing.Point(198, 585);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(148, 27);
+            this.textBox5.Size = new System.Drawing.Size(330, 27);
             this.textBox5.TabIndex = 23;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("MV Boli", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(203, 164);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(148, 27);
-            this.textBox6.TabIndex = 24;
             // 
             // geri_btn
             // 
@@ -326,15 +310,33 @@ namespace Presentation_Layer
             this.geri_btn.UseVisualStyleBackColor = false;
             this.geri_btn.Click += new System.EventHandler(this.geri_btn_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Bookman Old Style", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(34, 588);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(165, 36);
+            this.label4.TabIndex = 32;
+            this.label4.Text = "Hastanın Mail Adresi : \r\n       (hotmail.com)\r\n";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(34, 39);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(304, 283);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
             // HastaPdf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1296, 819);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.geri_btn);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.DosyaEkle);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.listView2);
@@ -345,6 +347,7 @@ namespace Presentation_Layer
             this.Load += new System.EventHandler(this.HastaPdf_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -374,9 +377,9 @@ namespace Presentation_Layer
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button DosyaEkle;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Button geri_btn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

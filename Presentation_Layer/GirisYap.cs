@@ -19,25 +19,25 @@ namespace Presentation_Layer
 
         private void Giris_Yap_btn_Click(object sender, EventArgs e)
         {
-            //if (kullaniciAdi.Text == "m" && sifre.Text == "1")
-            //{
-            //    SekreterIslemleri sekterislem = new SekreterIslemleri();
-            //    sekterislem.Show();
-            //    this.Hide();
-            //}
-            //else if (kullaniciAdi.Text == "z" && sifre.Text == "2")
-            //{
-            //    Doktorİslemleri doktorislem = new Doktorİslemleri();
-            //    doktorislem.Show();
-            //    this.Hide();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Lütfen kullanıcı adını ve şifrenizi kontrol ediniz!");
-            //}
-            SekreterIslemleri sekterislem = new SekreterIslemleri();
-            sekterislem.Show();
-            this.Hide();
+            if (kullaniciAdi.Text == "m" && sifre.Text == "1")
+            {
+                SekreterIslemleri sekterislem = new SekreterIslemleri();
+                sekterislem.Show();
+                this.Hide();
+            }
+            else if (kullaniciAdi.Text == "z" && sifre.Text == "2")
+            {
+                Doktorİslemleri doktorislem = new Doktorİslemleri();
+                doktorislem.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen kullanıcı adını ve şifrenizi kontrol ediniz!");
+            }
+            //SekreterIslemleri sekterislem = new SekreterIslemleri();
+            //sekterislem.Show();
+            //this.Hide();
 
         }
 
@@ -51,6 +51,11 @@ namespace Presentation_Layer
         private void GirisYap_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void kapat_btn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

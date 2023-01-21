@@ -23,8 +23,8 @@ namespace Presentation_Layer
         }
         private void verileri_goruntule()
         {
-            SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
-            List<Hasta> hastalar = sekretermanager1.GetAllPatients();
+            DoktorManager doktorManager = new DoktorManager(new HastaDal(), new KayitDal());
+            List<Hasta> hastalar = doktorManager.GetAllPatients();
 
             listView2.Items.Clear();
             foreach (Hasta hasta in hastalar)
@@ -41,7 +41,6 @@ namespace Presentation_Layer
 
         private void bransagoredoktor_btn_Click(object sender, EventArgs e)
         {
-            //string selectedBranch = comboBox2.SelectedItem.ToString();
             Hasta selectedItem = (Hasta)comboBox2.SelectedItem;
             string bolum = selectedItem.GittigiBolum;
             SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
@@ -61,11 +60,7 @@ namespace Presentation_Layer
 
         private void RandevuIslemleri_Load(object sender, EventArgs e)
         {
-            //SekreterManager sekreterManager = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
-            //List<string> branslar = sekreterManager.GetBranches();
-            //comboBox1.DataSource = branslar;
-            //comboBox2.DataSource = branslar;
-            //comboBox3.DataSource = branslar;
+          
             SekreterDal _sekreterDal = new SekreterDal();
             comboBox1 = _sekreterDal.GetBranches(comboBox1);
             comboBox2 = _sekreterDal.GetBranches(comboBox2);
@@ -82,7 +77,30 @@ namespace Presentation_Layer
 
         private void hastaEkle_btn_Click(object sender, EventArgs e)
         {
-           
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Hasta İsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Hasta Soyİsmi boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text) || (maskedTextBox1.Text.Length < 10))
+            {
+                MessageBox.Show("Telefon numarası boş olamaz ve en az 10 haneli olmalıdır!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                maskedTextBox1.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Doktor İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
             SekreterManager sekretermanager1 = new SekreterManager(new DoktorDal(), new HastaDal(), new SekreterDal());
             string ad = textBox1.Text;
             string soyad = textBox2.Text;
@@ -107,21 +125,39 @@ namespace Presentation_Layer
 
         private void randevuKayıt_btn_Click(object sender, EventArgs e)
         {
-            RandevuDal randevuDal = new RandevuDal();
-            int HastaId = Convert.ToInt32(textBox6.Text);
-            int DoktorId = Convert.ToInt32(textBox4.Text);
-            DateTime Tarih = Convert.ToDateTime(maskedTextBox2.Text);
-            //string tarih = Tarih.ToString();
-            string brans = comboBox3.Text;
-            randevuDal.Insert(HastaId, DoktorId, Tarih);
-            MessageBox.Show("Randevu Başarıyla Kaydedildi!");
+            if (string.IsNullOrWhiteSpace(textBox6.Text))
+            {
+                MessageBox.Show("Hasta İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Doktor İd boş olamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Focus();
+                return;
+            }
+            DateTime currentDate = DateTime.Now;
+            DateTime selectedDate = dateTimePicker1.Value;
+
+            if (selectedDate > currentDate )
+            {
+                RandevuDal randevuDal = new RandevuDal();
+                int HastaId = Convert.ToInt32(textBox6.Text);
+                int DoktorId = Convert.ToInt32(textBox4.Text);
+                //string tarih = Tarih.ToString();
+                string brans = comboBox3.Text;
+                randevuDal.Insert(HastaId, DoktorId, selectedDate);
+                MessageBox.Show("Randevu Başarıyla Kaydedildi!");
+            }
+            else
+            {
+                MessageBox.Show("Lütfen ileri bir tarih seçiniz!");
+            }
+           
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Hasta selectedItem = (Hasta)comboBox1.SelectedItem;
-            //label6.Text = selectedItem.bransId.ToString();
-        }
+      
 
         private void geri_btn_Click(object sender, EventArgs e)
         {
@@ -129,6 +165,8 @@ namespace Presentation_Layer
             sekreterislem.Show();
             this.Hide();
         }
+
+      
     }
 }
 

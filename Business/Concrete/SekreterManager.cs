@@ -69,11 +69,6 @@ namespace Business.Concrete
             return _doktordal.GetDoctorById(id);
         }
 
-        public List<Hasta> GetAllPatients()
-        {
-            return _hastadal.GetAllPatients();
-        }
-
         public Hasta GetPatientById(int id)
         {
             return _hastadal.GetPatientById(id);
@@ -112,6 +107,20 @@ namespace Business.Concrete
         public int GetPatientCountByBranch(int branchId)
         {
             return _sekreterdal.GetPatientCountByBranch(branchId);
+        }
+
+        public bool CheckIfIdExistsSecreter(int idToCheck)
+        {
+           return _sekreterdal.CheckIfIdExistsSecreter(idToCheck);
+        }
+
+        public bool CheckIfIdExistsDoctor(int idToCheck)
+        {
+            return _doktordal.CheckIfIdExistsDoctor(idToCheck);
+        }
+        public bool CheckIfIdExistsPatient(int idToCheck)
+        {
+            return _hastadal.CheckIfIdExistsPatient(idToCheck);
         }
     }
 }

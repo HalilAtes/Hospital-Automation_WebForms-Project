@@ -17,5 +17,6 @@ namespace DataAccess.Abstract
         void Add(Doktor doktor);
         void Update(Doktor doktor);
         void Delete(int id);
+        bool CheckIfIdExistsDoctor(int idToCheck);
     }
 }

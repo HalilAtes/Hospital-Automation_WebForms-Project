@@ -18,7 +18,7 @@ namespace DataAccess.Concrete
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
-                string query = "INSERT INTO Randevular (HastaId, DoktorId, Tarih) VALUES ( @hasta_ıd, @doktor_ıd,@tarih)";
+                string query = "INSERT INTO Randevular (Hasta_Id, DoktorId, Tarih) VALUES ( @hasta_ıd, @doktor_ıd,@tarih)";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@hasta_ıd", hastaId);
@@ -29,17 +29,19 @@ namespace DataAccess.Concrete
             }
         }
 
-        public void InsertGorus(int hastaId, string gorus, string sonuc)
+       
+        public void UpdatePatient(int hastaId, string gorus, string sonuc)
         {
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();
-                string query = "INSERT INTO Kayıtlar (Hasta_Id, Gorus, Sonuc) VALUES ( @hasta_ıd, @gorus,@sonuc)";
+                string query = "UPDATE Kayıtlar SET (Hasta_Id, Gorus , Sonuc) VALUES ( @hasta_ıd, @gorus,@sonuc) WHERE Hasta_Id = @hastaId";
                 using (OleDbCommand command = new OleDbCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@hasta_ıd", hastaId);
-                    command.Parameters.AddWithValue("@gorus", gorus);
+                    command.Parameters.AddWithValue("@gorus", hastaId);
+                    command.Parameters.AddWithValue("@soyad", gorus);
                     command.Parameters.AddWithValue("@sonuc", sonuc);
+                    command.Parameters.AddWithValue("@id", hastaId);
                     command.ExecuteNonQuery();
                 }
             }
