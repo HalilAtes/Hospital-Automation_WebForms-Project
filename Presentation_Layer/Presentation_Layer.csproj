@@ -251,6 +251,11 @@
     <Content Include="HastaneOtomasyonDb.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\Hospital1.png" />
+    <Content Include="images\Hospital3.png" />
+    <Content Include="images\hospital4.png" />
+    <Content Include="images\hospital6.png" />
+    <Content Include="images\Hospital7.png" />
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
   <ItemGroup>
